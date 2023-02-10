@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './Home.css';
 import { Auth } from 'aws-amplify';
+import { testCall } from '../calls/lambda'
 
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
                 <p>
                 Unio
                 </p>
+                <button onClick={() => testCall()}>Test Call</button>
                 <button onClick={() => signOut()}>Log Out</button>
             </header>
         </div>
