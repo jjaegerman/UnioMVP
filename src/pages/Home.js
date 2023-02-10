@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './Home.css';
+import { useAuthenticator } from '@aws-amplify/ui-react';
+
 
 const Home = () => {
     return (
@@ -9,6 +11,7 @@ const Home = () => {
                 <p>
                 Unio
                 </p>
+                <button onClick={() => useAuthenticator()}>Log Out</button>
             </header>
         </div>
     );
