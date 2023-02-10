@@ -1,9 +1,19 @@
 import logo from './logo.svg';
 import './Home.css';
-import { useAuthenticator } from '@aws-amplify/ui-react';
+import { Auth } from 'aws-amplify';
 
 
 const Home = () => {
+    
+
+    async function signOut() {
+        try {
+            await Auth.signOut();
+        } catch (error) {
+            console.log('error signing out: ', error);
+        }
+    }
+
     return (
         <div className="App">
             <header className="App-header">
@@ -11,7 +21,7 @@ const Home = () => {
                 <p>
                 Unio
                 </p>
-                <button onClick={() => useAuthenticator()}>Log Out</button>
+                <button onClick={() => signOut()}>Log Out</button>
             </header>
         </div>
     );

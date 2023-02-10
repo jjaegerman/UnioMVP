@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import store from './store/store';
 import { Provider } from 'react-redux';
 import '@aws-amplify/ui-react/styles.css';
-import Amplify, { Auth } from 'aws-amplify'
+import { Amplify, Auth } from 'aws-amplify'
 import awsconfig from './aws-exports';
 
 Amplify.configure(awsconfig);
