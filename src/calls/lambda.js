@@ -10,9 +10,12 @@ export async function testCall() {
             Authorization: token
         },
         body: {
-            Name: "Test"
-        }
+            name: "Test"
+        },
+        name: "Test2"
     }
     const data = await API.get('apic2ea3c70', '/items', requestData)
     console.log("data: ", data)
   }
+
+  //CGO_ENABLED=0 amplify push
