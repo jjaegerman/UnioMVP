@@ -8,6 +8,9 @@ export async function testCall() {
     const requestData = {
         headers: {
             Authorization: token
+        },
+        body: {
+            Name: "Test"
         }
     }
     const data = await API.get('apic2ea3c70', '/items', requestData)
