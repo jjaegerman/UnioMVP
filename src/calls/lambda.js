@@ -12,7 +12,10 @@ export async function testCall() {
         body: {
             name: "Test"
         },
-        name: "Test2"
+        name: "Test2",
+        queryStringParameters: {
+            name: "Test3"
+        }
     }
     const data = await API.get('apic2ea3c70', '/items', requestData)
     console.log("data: ", data)

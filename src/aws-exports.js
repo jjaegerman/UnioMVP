@@ -35,6 +35,17 @@ const awsmobile = {
             "endpoint": "https://6f0sna6797.execute-api.us-east-2.amazonaws.com/staging",
             "region": "us-east-2"
         }
+    ],
+    "aws_dynamodb_all_tables_region": "us-east-2",
+    "aws_dynamodb_table_schemas": [
+        {
+            "tableName": "uniouserdyn-staging",
+            "region": "us-east-2"
+        },
+        {
+            "tableName": "unioclubdyn-staging",
+            "region": "us-east-2"
+        }
     ]
 };
 
