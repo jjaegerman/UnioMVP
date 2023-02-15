@@ -1,17 +1,20 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Test from "./pages/Test"
 import Home from "./pages/Home"
-import { withAuthenticator } from '@aws-amplify/ui-react';
+import { ThemeProvider } from '@aws-amplify/ui-react';
 
 function App() {
+
   return (
-    <BrowserRouter>
+    <ThemeProvider><BrowserRouter>
       <Routes>
         <Route path="/">
           <Route index element={<Home />} />
+          <Route path="test" element={<Test />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter></ThemeProvider>
   );
 }
 
-export default withAuthenticator(App);
+export default App;

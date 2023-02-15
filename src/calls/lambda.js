@@ -17,8 +17,6 @@ export async function testCall() {
             name: "Test3"
         }
     }
-    const data = await API.get('apic2ea3c70', '/items', requestData)
+    const data = await API.get('apic2ea3c70', '/items/test1', requestData)
     console.log("data: ", data)
   }
-
-  //CGO_ENABLED=0 amplify push
