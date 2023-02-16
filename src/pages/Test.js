@@ -1,4 +1,4 @@
-import logo from '../media/logo.svg';
+import logo from '../media/TestLogo.svg';
 import './Test.css';
 import { testCall } from '../calls/lambda'
 import { signOut } from '../auth/auth';
