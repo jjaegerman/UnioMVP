@@ -1,12 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TiGroup, TiPlus } from 'react-icons/ti';
-import { Grid, Card, Tabs, TabItem, Collection, Image, Text, Flex, Icon, useTheme } from '@aws-amplify/ui-react';
+import { Grid, Card, Flex, Tabs, TabItem, Collection, Image, Text, Icon, useTheme, Button } from '@aws-amplify/ui-react';
 import fullUnioLogo from "../media/UnioFull.png"
+import { Authenticator } from '@aws-amplify/ui-react';
+import { useAuthenticator } from '@aws-amplify/ui-react';
 
 const Home = () => {
-    const [tabIndex, setTabIndex] = useState(1)
-    const { tokens } = useTheme();
-    const mainContent = () => {
+    const [login, setLogin] = useState(false)
+    const { route } = useAuthenticator(context => [context.route]);
+    return route !== 'authenticated' && login === true ? <Authenticator /> : <HomeContent setLogin={setLogin} />;
+}
+
+const MainContent = ({tabIndex}) => {
     if (tabIndex==2) {
         return (<Text>About</Text>)
     } else if (tabIndex==3) {
@@ -14,6 +19,16 @@ const Home = () => {
     } else {
         return (<Text>Home</Text>)
     }}
+
+const HomeContent = ({setLogin}) => {
+    const [tabIndex, setTabIndex] = useState(1)
+    const { tokens } = useTheme();
+    useEffect(() => {
+        console.log(tabIndex);
+      }, [tabIndex])
+
+    const { route } = useAuthenticator(context => [context.route]);
+    
     const mockClubs = [
         {
           title: 'Club1',
@@ -47,29 +62,39 @@ const Home = () => {
                 <Tabs
                     backgroundColor={tokens.colors.background.quaternary}
                     currentIndex={tabIndex} onChange={(i) => setTabIndex(i)}
-                    justifyContent="flex-start"
+                    justifyContent="center"
                 >
-                    <TabItem 
-                        title={<Image
+                    <Image
                             width="7rem"
                             alt="full Unio logo and name"
                             objectFit="contain"
                             src={fullUnioLogo}
-                        />} 
-                        isDisabled={true} 
-                        paddingBottom={tokens.space.zero}
-                        paddingTop = {tokens.space.xxxs}
-                        paddingRight = {tokens.space.large}
+                            marginBottom={tokens.space.xxxs}
+                            marginTop = {tokens.space.xxxs}
+                            marginRight = "auto"
+                            marginLeft = {tokens.space.xs}
                     />
                     <TabItem fontSize={tokens.fontSizes.small} title="Home"/>
                     <TabItem fontSize={tokens.fontSizes.small} title="About"/>
                     <TabItem fontSize={tokens.fontSizes.small} title="Contact"/>
+                    <Button 
+                        onClick = {() => setLogin(true)}
+                        variation = "primary"
+                        backgroundColor= {tokens.colors.font.interactive}
+                        marginLeft="auto"
+                        marginRight= {tokens.space.xs}
+                        marginBottom={tokens.space.xxxs}
+                        marginTop = {tokens.space.xxxs}
+                    >
+                        Log in
+                    </Button>
                 </Tabs>
             </Card>
-            <Card
+            {route==="authenticated" && <Card
                 backgroundColor={tokens.colors.background.secondary}
                 columnStart="1"
                 columnEnd="2"
+                visible=""
             >
                 <Collection
                     backgroundColor={tokens.colors.background.secondary}
@@ -88,14 +113,14 @@ const Home = () => {
                         padding={tokens.space.xs}
                     >
                         {
-                            item.id=="createnew"?
+                            item.id==="createnew"?
                                 <Icon
                                     objectFit="contain"
                                     height="2rem"
                                     width="2rem"
                                     as={TiPlus}
                                 />
-                                :item.image==null?
+                                :item.image===null?
                                     <Icon
                                         objectFit="contain"
                                         height="2rem"
@@ -112,13 +137,13 @@ const Home = () => {
                     </Card>
                 )}
                 </Collection>
-            </Card>
+            </Card>}
             <Card
                 columnStart="2"
                 columnEnd="-1"
-            >
-               {mainContent()}
-            </Card>
+            ><Flex justifyContent="center">
+               <MainContent tabIndex={tabIndex}/>
+            </Flex></Card>
             <Card
                 columnStart="1"
                 columnEnd="-1"

@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store/store';
-import { Provider } from 'react-redux';
 import '@aws-amplify/ui-react/styles.css';
 import { Amplify, API, Auth } from 'aws-amplify'
 import awsconfig from './aws-exports';
+import { Authenticator } from '@aws-amplify/ui-react';
 
 Amplify.configure(awsconfig);
 Auth.configure(awsconfig);
@@ -15,7 +15,7 @@ API.configure(awsconfig);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider store={store}>
+  <Authenticator.Provider store={store}>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,7 +23,7 @@ root.render(
       rel="stylesheet"
     />
     <App />
-  </Provider>
+  </Authenticator.Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
