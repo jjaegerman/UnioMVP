@@ -135,6 +135,7 @@ const HomeContent = ({setLogin}) => {
                         marginRight= {tokens.space.large}
                         marginBottom={tokens.space.xxxs}
                         marginTop = {tokens.space.xxxs}
+                        size="small"
                     >
                         {route==="authenticated"?"Sign Out":"Log in"}
                     </Button>
