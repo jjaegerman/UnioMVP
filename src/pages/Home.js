@@ -137,7 +137,7 @@ const HomeContent = ({setLogin}) => {
                         marginTop = {tokens.space.xxxs}
                         size="small"
                     >
-                        {route==="authenticated"?"Sign Out":"Log in"}
+                        {route==="authenticated"?"Log Out":"Log in"}
                     </Button>
                 </Tabs>
             </Card>
