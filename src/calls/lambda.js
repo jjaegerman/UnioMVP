@@ -17,6 +17,17 @@ export async function testCall() {
             name: "Test3"
         }
     }
-    const data = await API.get('apic2ea3c70', '/items/test1', requestData)
+    const data = await API.post('apic2ea3c70', '/addUser', requestData)
     console.log("data: ", data)
+  }
+
+  export async function addUser() {
+    const user = await Auth.currentAuthenticatedUser()
+    const token = user.signInUserSession.idToken.jwtToken
+    const requestData = {
+        headers: {
+            Authorization: token
+        },
+    }
+    return await API.post('apic2ea3c70', '/addUser', requestData)
   }

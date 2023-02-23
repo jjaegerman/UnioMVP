@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { TiGroup, TiPlus } from 'react-icons/ti';
 import { Grid, SelectField, Card, Flex, Tabs, TextField, TabItem, Collection, Image, Text, Icon, useTheme, Button } from '@aws-amplify/ui-react';
 import fullUnioLogo from "../media/UnioFull.png"
-import { Authenticator } from '@aws-amplify/ui-react';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -10,11 +9,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { signOut } from '../auth/auth';
+import { AuthPage } from '../auth/auth';
 
 const Home = () => {
     const [login, setLogin] = useState(false)
     const { route } = useAuthenticator(context => [context.route]);
-    return route !== 'authenticated' && login === true ? <Authenticator /> : <HomeContent setLogin={setLogin} />;
+    return route !== 'authenticated' && login === true ? <AuthPage /> : <HomeContent setLogin={setLogin} />;
 }
 
 const MainContent = ({tabIndex}) => {
@@ -30,9 +30,6 @@ const HomeContent = ({setLogin}) => {
     const [openDialogue, setOpenDialogue] = useState(false);
     const [tabIndex, setTabIndex] = useState(1)
     const { tokens } = useTheme();
-    useEffect(() => {
-        console.log(tabIndex);
-    }, [tabIndex])
     const mockClubs = [
         {
           title: 'Club1',
