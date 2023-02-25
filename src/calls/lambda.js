@@ -28,6 +28,7 @@ export async function testCall() {
         headers: {
             Authorization: token
         },
+        body: {}
     }
     return await API.post('apic2ea3c70', '/addUser', requestData)
   }
